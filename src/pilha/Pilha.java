@@ -50,8 +50,16 @@ void exibir(){
 }
 		public void min(int menornum){
                 for (int i=0; i<pilha.size(); i++) {
-                 if(pilha.get(i)==menornum){
-             System.out.println("O menor valor da pilha é :"+pilha.get(i));
+			if(i==0){
+				setMenornum(pilha.get(i));
+			}
+			else{
+				if(getMenornum() > pilha.get(i)){
+					setMenornum(pilha.get(i));	
+				}
+			}
+                 //if(pilha.get(i)==menornum){
+		//System.out.println("O menor valor da pilha é :"+pilha.get(i));
 
     }
                 }
