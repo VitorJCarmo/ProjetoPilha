@@ -2,24 +2,36 @@
 package pilha;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
+
 
 
 
 public class Pilha {  
     private ArrayList<Integer> pilha = new ArrayList();
-    int tam;
-        public Pilha() {
-this.tam = pilha.size();
+ int menornum;
+
+
+    public int getMenornum() {
+        return menornum;
+    }
+
+    public void setMenornum(int menornum) {
+        this.menornum = menornum;
     }
     
 void push(int numero){
-this.pilha.add(numero);
+pilha.add(numero);
 }
 
 void pop(){
-pilha.remove(tam);
+    if(pilha.isEmpty()){
+        System.out.println("Pilha Vazia");
+    }
+    else{
+    pilha.remove(pilha.size()-1);
+    }
 }
 
     public ArrayList<Integer> getPilha() {
@@ -32,11 +44,21 @@ pilha.remove(tam);
 
 void exibir(){
     int i;
-    for (i=0; i<=pilha.size(); i++) {
+    for (i=0; i<pilha.size(); i++) {
         System.out.println(pilha.get(i));
     }
-		
 }
+		public void min(int menornum){
+                for (int i=0; i<pilha.size(); i++) {
+                 if(pilha.get(i)==menornum){
+             System.out.println("O menor valor da pilha é :"+pilha.get(i));
+
+    }
+                }
+                }
+
+                
+
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
                System.out.println("Informe (1) para guardar um valor na pilha");
@@ -44,17 +66,18 @@ void exibir(){
                System.out.println("Informe (3) para mostrar a  pilha");
                System.out.println("Informe (4) para mostrar o menor valor na  pilha");
                System.out.println("Informe (0) para sair");
+               
            int status = ler.nextInt();
-         Pilha c = new Pilha();
         while(status!=0){
-
-             
+         Pilha c = new Pilha();
                      
-            switch (status) {
-                case 1:
+            if (status==1) {
                     System.out.println("Informe um numero para guardar na pilha");
                     int n = ler.nextInt();
                     c.push(n);
+                    if(n<c.getMenornum()){
+                        c.setMenornum(n);
+                    }
                System.out.println("Numero "+n+" registrado");
                System.out.println("Informe (1) para guardar um valor na pilha");
                System.out.println("Informe (2) para remover o ultimo valor da pilha");
@@ -62,37 +85,37 @@ void exibir(){
                System.out.println("Informe (4) para mostrar o menor valor na  pilha");
                System.out.println("Informe (0) para sair");
                      status = ler.nextInt();
-                    break;
-                case 2:
+            }
+            else if(status == 2){
                     c.pop();
                System.out.println("Valor removido");
-                  c.exibir();
                System.out.println("Informe (1) para guardar outro valor na pilha");
-               System.out.println("Informe (2) para remover o ultimo valor da pilha");
+               System.out.println("Informe (3) para mostrar a pilha");
                System.out.println("Informe (4) para mostrar o menor valor na  pilha");
                System.out.println("Informe (0) para sair");
                     status = ler.nextInt();
-                    break;
-                case 3:
+            }
+              else if(status ==3){
                     c.exibir();
                System.out.println("Informe (1) para guardar outro valor na pilha");
                System.out.println("Informe (2) para remover o ultimo valor da pilha");
                System.out.println("Informe (4) para mostrar o menor valor na  pilha");
                System.out.println("Informe (0) para sair");
                     status = ler.nextInt();
-                    break;
-                case 4:
-                    c.exibir();
+              }
+                else if(status ==4){
+                    c.getMenornum();
+               System.out.println("O menor valor na pilha é o : "+c.getMenornum());
                System.out.println("Informe (1) para guardar outro valor na pilha");
                System.out.println("Informe (2) para remover o ultimo valor da pilha");
                System.out.println("Informe (3) para mostrar a  pilha");
                System.out.println("Informe (4) para mostrar o menor valor na  pilha");
                System.out.println("Informe (0) para sair");
                   status = ler.nextInt();
-                    break;
-                default:
-                    
-                    break;
+                }
+                else{
+                     System.out.println("Informe um valor entre (0) - (4)");
+                     status = ler.nextInt();
             }
         }
         
